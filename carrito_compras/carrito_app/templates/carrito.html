@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">Descripción</th>
+        <th scope="col" style="width:100px">Descripción</th>
         <th scope="col">Cantidad</th>
         <th scope="col">Precio</th>
       </tr>
@@ -11,10 +11,17 @@
             {% for key, value in request.session.carrito.items %}
             <tr>
                 <td>{{value.nombre}}</td>
-                <td>{{value.cantidad}}
-                    <a href="{% url 'agregar' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
-                    <a href="{% url 'restar' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
-                    <a href="{% url 'eliminar' value.producto_id %}" class="badge btn btn-dark badge-dark">x</a>
+                <td>
+                    <a href="{% url 'agregar' value.producto_id %}" class="badge btn btn-dark badge-dark">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                    {{value.cantidad}}
+                    <a href="{% url 'restar' value.producto_id %}" class="badge btn btn-dark badge-dark">
+                        <i class="bi bi-dash-circle"></i>
+                    </a>
+                    <a href="{% url 'eliminar' value.producto_id %}" class="badge btn btn-dark badge-dark">
+                        <i class="bi bi-trash3"></i>
+                    </a>
                 </td>
                 <td>{{value.acumulado}}</td>
             </tr>
@@ -29,7 +36,7 @@
         <tr>
             <th scope="row">Total:</th>
             <td colspan="1"></td>
-            <td colspan="1">$ {{total_carrito}}</td>
+            <td colspan="2">${{total_carrito}}</td>
         </tr>
     </tbody>
 </table>
